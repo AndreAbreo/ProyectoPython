@@ -1,0 +1,35 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+
+<div style="text-align:center; display: flex; flex-direction: column; align-items: center;">
+    <form action=""></form>
+    <h2 class="text-center">Buscar Personajes</h2>
+    <label for="heroe_nombre"></label>
+    <div class="container-fluid form1" style=" margin: 2rem; width: 50vw" ;>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar personaje" aria-label="Search"
+                name="heroe_nombre" id="heroe_nombre" maxlength="50">
+            <button class="btn btn-success" type="submit">Buscar</button>
+        </form>
+    </div>
+    </form>
+</div>
+<table class="table table-info w-75 mx-auto text-center">
+    <tr class="table-dark">
+        <th>Nombre</th>
+        <th>Autor</th>
+        <th>Imagen</th>
+        <th>Historia</th>
+    </tr>
+    {% for heroe in heroes %}
+    <tr>
+        <td>{{ heroe.nombre }}</td>
+        <td>{{ heroe.autor }}</td>
+        <td>{{ heroe.imagen }}</td>
+        <td>{{ heroe.historia }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

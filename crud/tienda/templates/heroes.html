@@ -1,0 +1,64 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+{% endif %}
+
+<h2 class="text-center">Personajes de Comics</h2>
+
+<form class="form1" action="heroes/guardar1" class="w-50 shadow mx-auto p-4 m-3" method="post">
+    {% csrf_token %}
+    Nombre: <input type="text" name="nombre" class="form-control my-2" required>
+
+    Autor: <input type="text" name="autor" class="form-control my-2" required>
+
+    Imagen: <input type="url" name="imagen" class="form-control my-2" required>
+
+
+    Historia:
+    <textarea name="historia" id="" cols="30" rows="10" class="form-control my-2">
+
+        </textarea>
+
+    <input type="submit" value="Guardar" class="btn btn-primary">
+
+</form>
+
+<table class="table table-info w-75 mx-auto text-center">
+    <tr class="table-dark">
+        <th>Nombre</th>
+        <th>Autor</th>
+        <th>Imagen</th>
+        <th>Historia</th>
+        <th colspan="2"></th>
+    </tr>
+    {% for heroe in heroes %}
+    <tr>
+        <td>{{ heroe.nombre }}</td>
+        <td>{{ heroe.autor }}</td>
+        <td>{{ heroe.imagen }}</td>
+        <td>{{ heroe.historia }}</td>
+        <td>
+            <form action="{% url 'eliminar1' heroe.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger" onclick="return confirm('¿Deseas eliminar este heroe?')">
+                    <i class="fa fa-trash"> Eliminar</i>
+                </button>
+            </form>
+        </td>
+        <td>
+            <form action="{% url 'detalle1' heroe.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-warning">
+                    <i class="fa fa-edit"> Editar</i>
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

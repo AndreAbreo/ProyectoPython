@@ -1,0 +1,26 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+
+
+<h2 class="text-center">Editar Personajes</h2>
+
+<form class="form1" action="{% url 'editar1' %}" class="w-50 shadow mx-auto p-4 m-3" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="id" value="{{ heroe.id }}">
+    Nombre: <input type="text" name="nombre" class="form-control my-2" required value="{{ heroe.nombre }}">
+
+    Autor: <input type="text" name="autor" class="form-control my-2" required value="{{ heroe.autor }}">
+
+    Imagen: <input type="url" name="imagen" class="form-control my-2" value="{{ heroe.imagen }}">
+
+    Historia:
+    <textarea name="historia" id="" cols="20" rows="5" class="form-control my-2">
+                {{ heroe.historia }}
+        </textarea>
+
+    <input type="submit" value="Actualizar" class="btn btn-warning">
+
+</form>
+{% endblock %}

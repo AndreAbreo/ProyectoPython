@@ -1,0 +1,59 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+{% endif %}
+
+<h2 class="text-center">Comics</h2>
+
+<form class="form1" action="productos/guardar" class="w-50 shadow mx-auto p-4 m-3" method="post">
+    {% csrf_token %}
+    Nombre: <input type="text" name="nombre" class="form-control my-2" required>
+
+    Precio: <input type="number" name="precio" class="form-control my-2" required>
+
+    Descripcion:
+    <textarea name="descripcion" id="" cols="30" rows="10" class="form-control my-2">
+
+        </textarea>
+
+    <input type="submit" value="Guardar" class="btn btn-primary">
+
+</form>
+
+<table class="table table-info w-75 mx-auto text-center">
+    <tr class="table-dark">
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Descripcion</th>
+        <th colspan="2"></th>
+    </tr>
+    {% for producto in productos %}
+    <tr>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.precio }}</td>
+        <td>{{ producto.descripcion }}</td>
+        <td>
+            <form action="{% url 'eliminar' producto.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger" onclick="return confirm('¿Deseas eliminar este producto?')">
+                    <i class="fa fa-trash"> Eliminar</i>
+                </button>
+            </form>
+        </td>
+        <td>
+            <form action="{% url 'detalle' producto.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-warning">
+                    <i class="fa fa-edit"> Editar</i>
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+
+
+<h2 class="text-center">Editar Usuarios</h2>
+
+<form class="form1" action="{% url 'editar2' %}" class="w-50 shadow mx-auto p-4 m-3" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="id" value="{{ usuario.id }}">
+    Alias: <input type="text" name="alias" class="form-control my-2" required value="{{ usuario.alias }}">
+
+    Personaje favorito: <input type="text" name="personaje_fav" class="form-control my-2" required
+        value="{{ usuario.personaje_fav }}">
+
+    Telefono: <input type="number" name="telefono" class="form-control my-2" required value="{{ usuario.telefono }}">
+
+    codigo: <input type="text" name="codigo" class="form-control my-2" required value="{{ usuario.codigo }}">
+
+    <input type="submit" value="Actualizar" class="btn btn-warning">
+
+</form>
+{% endblock %}

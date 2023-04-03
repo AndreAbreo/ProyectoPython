@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+body{
+        background-image: url("../img/wall2.jpg");
+        background-repeat: repeat;
+        background-position: center center;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+
+}
+
+nav{
+    background-color: blanchedalmond;
+    border: 10px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.form1{
+    background-color: blanchedalmond;
+    border: 10px solid black;
+    padding: 10px;
+}
+h1, h2, h3{
+    background-color: blanchedalmond;
+    padding: 10px;
+    border: 10px solid black;
+}

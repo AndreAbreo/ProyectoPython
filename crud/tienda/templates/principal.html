@@ -1,0 +1,17 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+
+<h1 class="text-center">El Rincón del Comic</h1>
+<div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="{% url 'producto-list' %}" class="btn btn-dark" style="margin-bottom: 1rem;">BUSCAR COMICS</a>
+        <a href="{% url 'heroe-list' %}" class="btn btn-dark" style="margin-bottom: 1rem;">BUSCAR PERSONAJES</a>
+        <a href="{% url 'usuario-list' %}" class="btn btn-dark">BUSCAR USUARIOS</a>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

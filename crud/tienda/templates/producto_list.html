@@ -1,0 +1,36 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+
+<div style="text-align:center; display: flex; flex-direction: column; align-items: center;">
+  <form action=""></form>
+  <h2 class="text-center">Buscar Comics</h2>
+  <label for="criterio_nombre"></label>
+  <div class="container-fluid" style=" margin: 2rem; width: 50vw" ;>
+    <form class="d-flex form1" role="search">
+      <input class="form-control me-2" type="search" placeholder="Buscar Comic" aria-label="Search"
+        name="criterio_nombre" id="criterio_nombre" maxlength="50">
+      <button class="btn btn-success" type="submit">Buscar</button>
+    </form>
+  </div>
+  </form>
+</div>
+
+<h2 class="text-center">Comics</h2>
+
+<table class="table table-info w-75 mx-auto text-center">
+  <tr class="table-dark">
+    <th>Nombre</th>
+    <th>Precio</th>
+    <th>Descripcion</th>
+  </tr>
+  {% for producto in productos %}
+  <tr>
+    <td>{{ producto.nombre }}</td>
+    <td>{{ producto.precio }}</td>
+    <td>{{ producto.descripcion }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

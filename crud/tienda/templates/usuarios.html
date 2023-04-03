@@ -1,0 +1,61 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+{% endif %}
+
+<h2 class="text-center">Registro de Usuarios</h2>
+
+<form class="form1" action="usuarios/guardar2" class="w-50 shadow mx-auto p-4 m-3" method="post">
+    {% csrf_token %}
+    Alias: <input type="text" name="alias" class="form-control my-2" required>
+
+    Personaje favorito: <input type="text" name="personaje_fav" class="form-control my-2" required>
+
+    Telefono: <input type="number" name="telefono" class="form-control my-2" required>
+
+    Codigo: <input type="text" name="codigo" class="form-control my-2" required>
+
+
+    <input type="submit" value="Guardar" class="btn btn-primary">
+
+</form>
+
+<table class="table table-info w-75 mx-auto text-center">
+    <tr class="table-dark">
+        <th>Alias</th>
+        <th>Personaje favorito</th>
+        <th>Telefono</th>
+        <th>Codigo</th>
+        <th colspan="2"></th>
+    </tr>
+    {% for usuario in usuarios %}
+    <tr>
+        <td>{{ usuario.alias }}</td>
+        <td>{{ usuario.personaje_fav }}</td>
+        <td>{{ usuario.telefono }}</td>
+        <td>{{ usuario.codigo }}</td>
+        <td>
+            <form action="{% url 'eliminar2' usuario.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger" onclick="return confirm('¿Deseas eliminar este heroe?')">
+                    <i class="fa fa-trash"> Eliminar</i>
+                </button>
+            </form>
+        </td>
+        <td>
+            <form action="{% url 'detalle2' usuario.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-warning">
+                    <i class="fa fa-edit"> Editar</i>
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
